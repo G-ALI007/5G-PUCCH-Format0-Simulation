@@ -1,20 +1,25 @@
-# 5G NR PUCCH Format 0 - ACK Missed Detection Simulation
+# 5G NR PUCCH Format 0 Performance Simulation
 
-This repository contains a MATLAB implementation for simulating the **Physical Uplink Control Channel (PUCCH) Format 0** in 5G New Radio (NR). The simulation specifically focuses on analyzing the **ACK Missed Detection Probability**.
+This repository provides a comprehensive MATLAB simulation for **5G NR PUCCH Format 0** performance metrics, including ACK detection and DTX behavior.
 
-## Project Structure
-* `ACK_missed_F0.m`: The main execution script that sets up simulation parameters and runs the SNR loop.
-* `mynrPUCCH0.m`: Custom function for PUCCH Format 0 waveform generation.
-* `mynrPUCCHDecode.m`: Custom decoder that implements detection logic based on a specific threshold.
+## Simulations Included
+1. **ACK Missed Detection (`ACK_missed_F0.m`):**
+   - Measures the probability that a transmitted ACK is not detected or incorrectly decoded.
+2. **DTX to ACK Probability (`DTX_to_ACK_F0.m`):**
+   - Measures the false alarm rate where noise is incorrectly detected as an ACK signal when nothing was transmitted (Discontinuous Transmission).
 
-## Simulation Parameters
-- **Carrier Configuration:** 15 kHz Subcarrier Spacing, 25 PRBs.
-- **Channel Model:** TDL-C with 100 Hz maximum Doppler shift.
-- **Antenna Configuration:** 1x2 (SISO-SIMO).
-- **Detection Threshold:** 0.55 (Adjustable in the main script).
+## Technical Specifications
+* **Waveform:** 5G NR PUCCH Format 0.
+* **Channel:** TDL-C fading model (300ns delay spread, 100Hz Doppler).
+* **Antennas:** 1 TX antenna and 2 RX antennas.
+* **Threshold-based Detection:** Uses a configurable threshold (default: 0.55).
 
-## How to Use
-1. Clone the repository or download all `.m` files.
-2. Ensure you have the **MATLAB 5G Toolbox** installed.
-3. Run the script `ACK_missed_F0.m`.
-4. The simulation will output a semi-logarithmic plot showing the probability of missed detection vs. SNR.
+## Helper Functions
+The simulations rely on the following custom functions:
+* `mynrPUCCH0.m`: For signal generation.
+* `mynrPUCCHDecode.m`: For signal detection and UCI decoding.
+
+## How to Run
+1. Clone the repository.
+2. Open MATLAB (ensure 5G Toolbox is installed).
+3. Run either `ACK_missed_F0.m` or `DTX_to_ACK_F0.m` to see the performance plots.
